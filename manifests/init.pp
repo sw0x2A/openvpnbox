@@ -5,7 +5,8 @@ openvpn::server { 'chicago':
   city         => "Chicago",
   organization => "wartenserver.net",
   email        => "hostmaster@wartenserver.net",
-  server       => '10.200.200.0 255.255.255.0'
+  server       => '10.200.200.0 255.255.255.0',
+  push         => [ 'redirect-gateway' ],
 }
 
 # define clients
@@ -14,6 +15,12 @@ openvpn::client { 'swarten':
 }
 openvpn::client { 'uwarten':
   server   => 'chicago'
+}
+
+# TODO: Add up/down scripts support to openvpn::server and do iptables there
+exec { 'iptables -t nat -A POSTROUTING -s 10.200.200.0/24 -o eth0 -j MASQUERADE':
+  cwd => "/sbin",
+  path => [ "/sbin", "/usr/sbin", "/usr/bin" ],
 }
 
 # enable ip_forwarding for ipv4
