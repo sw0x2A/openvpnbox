@@ -1,9 +1,0 @@
-[submodule "modules/openvpn"]
-	path = modules/openvpn
-	url = https://github.com/luxflux/puppet-openvpn.git
-[submodule "modules/sysctl"]
-	path = modules/sysctl
-	url = https://github.com/luxflux/puppet-sysctl.git
-[submodule "modules/concat"]
-	path = modules/concat
-	url = https://github.com/ripienaar/puppet-concat.git
